@@ -1,18 +1,21 @@
+# reading data 
 import csv
 with open('wdi.csv', 'rb') as f:
     reader = csv.reader(f)
     wid_data = list(reader)
 	
-	
+# cleaning data
 gdp_cap = []
 life_exp = []
 pop=[]
 col=[]
-for r in w:
+for r in wid_data:
      gdp_cap.append(r[0]); life_exp.append(r[1]); pop.append(r[2]); col.append(r[3])
 
-gdp_cap = map(float,gdp_cap); life_exp = map(float,life_exp); pop = map(float, pop);
+gdp_cap = map(float,gdp_cap); life_exp = map(float,life_exp); pop = map(float, pop); col = map(lambda x:x.strip('"'))
 
+#ploting
+import matplotlib.pyplot as plt
 
 plt.scatter(x = gdp_cap, y = life_exp, s = np.array(pop) * 2, c = col, alpha = 0.8)
 
